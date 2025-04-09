@@ -1,4 +1,4 @@
-# 📱 Rick & Morty Multiplatform App
+# Rick & Morty Multiplatform App
 
 Bienvenue dans ce projet basé sur l’univers de Rick & Morty ! Il s’agit d’une application développée en **Kotlin Multiplatform** qui vise à fonctionner sur **Android, iOS, Web et Desktop**, en partageant un maximum de code grâce à **Jetpack Compose Multiplatform**.
 
