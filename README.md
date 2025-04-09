@@ -1,21 +1,38 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop.
+# 📱 Rick & Morty Multiplatform App
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+Bienvenue dans ce projet basé sur l’univers de Rick & Morty ! Il s’agit d’une application développée en **Kotlin Multiplatform** qui vise à fonctionner sur **Android, iOS, Web et Desktop**, en partageant un maximum de code grâce à **Jetpack Compose Multiplatform**.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+---
 
+## Architecture du projet Android
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+L’architecture repose sur **Kotlin Multiplatform**, ce qui signifie qu’on écrit une grande partie du code une seule fois, et il est réutilisé sur toutes les plateformes. Voici comment tout ça s’organise :
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
+### `composeApp/`
+C’est le cœur du projet. Il contient tout le code commun utilisé par toutes les plateformes : logique métier, appels API, et interface utilisateur via **Compose Multiplatform**.
 
-You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+À l’intérieur, on retrouve plusieurs "sources sets" :
+
+- `commonMain` → le code partagé (UI, logique, data, etc.).
+- `androidMain`, `iosMain`, etc. → des dossiers pour écrire du code spécifique à une plateforme quand c’est nécessaire.
+
+### `androidApp/`
+C’est la partie Android native du projet. Elle contient :
+- Le point d’entrée de l’app Android (`MainActivity.kt`)
+- La configuration Gradle pour Android
+- Et éventuellement des éléments propres à Android comme les permissions ou les fichiers de ressources (images, strings, etc.)
+
+### Côté technique
+- L’interface est faite avec **Jetpack Compose**, mais comme on utilise Compose Multiplatform pour que le même code d’UI tourne sur iOS, Web, et Desktop.
+- La communication avec l’API Rick & Morty se fait via **Ktor**.
+- L’architecture suit une approche assez classique MVI, facilitée par les ViewModels de KMP.
+
+---
+
+## Lancer le projet Android
+1. Clone le repo
+2. Ouvre-le dans Android Studio
+3. Lance `androidApp` comme une app Android classique
+
+---
+
